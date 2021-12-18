@@ -2,6 +2,7 @@ package com.example.mylibraryproject.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -22,8 +23,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
+        http
+                .csrf().disable()
+                .httpBasic()
+                .and()
+                .authorizeRequests()
+                .antMatchers(HttpMethod.GET, "/books/**").hasAnyAuthority("ADMIN", "USER", "MODERATOR")
+                .antMatchers(HttpMethod.POST, "/books/**").hasAnyAuthority("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/books/**").hasAnyAuthority("ADMIN")
+                .antMatchers(HttpMethod.PUT, "/books/**").hasAnyAuthority("ADMIN", "MODERATOR")
+                .anyRequest().authenticated()
+                .and()
+                .formLogin().disable();
     }
+
+    //DTO - Data Transfer Object
+
     @Bean
     public AuthenticationProvider authProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
