@@ -14,7 +14,6 @@ import javax.persistence.*;
 @Builder
 @Entity
 @Table(name = "users")
-
 public class User {
     @Id
     private String username;
@@ -26,7 +25,7 @@ public class User {
     @Column(name = "full_name")
     private String fullName;
     private Float balance;
-    
+
     @Column(name = "is_locked")
     private Boolean isLocked;
 }

@@ -1,4 +1,4 @@
-package com.example.mylibraryproject.service;
+package com.example.mylibraryproject.service.impl;
 
 import com.example.mylibraryproject.model.UserPrincipal;
 import com.example.mylibraryproject.model.entity.User;
