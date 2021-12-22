@@ -2,6 +2,7 @@ package com.example.mylibraryproject.controller;
 
 import com.example.mylibraryproject.model.entity.Book;
 import com.example.mylibraryproject.service.BookService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class BookController {
         this.bookService = bookService;
     }
 
+    @ApiOperation("To create new user")
     @PostMapping(value = "/create")
     public Book create(@RequestBody Book book) {
         return bookService.create(book);
