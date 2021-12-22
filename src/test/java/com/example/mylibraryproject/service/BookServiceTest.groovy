@@ -88,7 +88,7 @@ class BookServiceTest extends Specification {
         def result = service.getById(1)
 
         then:
-        1 * bookRepository.findById(1)
+        1 * bookRepository.findById(1) >> Optional.of(book)
         result == book
     }
 
