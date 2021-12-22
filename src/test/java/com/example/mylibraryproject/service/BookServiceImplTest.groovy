@@ -3,11 +3,12 @@ package com.example.mylibraryproject.service
 import com.example.mylibraryproject.model.entity.Book
 import com.example.mylibraryproject.model.enums.Genre
 import com.example.mylibraryproject.repository.BookRepository
+import com.example.mylibraryproject.service.impl.BookServiceImpl
 import spock.lang.Specification
 
-class BookServiceTest extends Specification {
+class BookServiceImplTest extends Specification {
     private BookRepository bookRepository = Mock()
-    private BookService service = new BookService(bookRepository)
+    private BookService service = new BookServiceImpl(bookRepository)
 
     def "test - create"() {
         given:
