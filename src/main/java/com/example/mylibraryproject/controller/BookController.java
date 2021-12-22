@@ -1,6 +1,5 @@
 package com.example.mylibraryproject.controller;
 
-import com.example.mylibraryproject.model.dto.BookDTO;
 import com.example.mylibraryproject.model.entity.Book;
 import com.example.mylibraryproject.service.BookService;
 import org.springframework.web.bind.annotation.*;
@@ -8,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/books")
+@RequestMapping("/")
 public class BookController {
 
     private final BookService bookService;
@@ -17,27 +16,27 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @PostMapping
+    @PostMapping(value = "/create")
     public Book create(@RequestBody Book book) {
-        return bookService.save(book);
+        return bookService.create(book);
     }
 
-    @PutMapping
+    @PostMapping(value = "/update")
     public Book update(@RequestBody Book book) {
         return bookService.update(book);
     }
 
-    @GetMapping
-    public List<BookDTO> getAll() {
+    @GetMapping(value = "/books")
+    public List<Book> getAll() {
         return bookService.getAll();
     }
 
-    @GetMapping(value = "{id}")
+    @GetMapping(value = "/books/{id}")
     public Book getById(@PathVariable("id") Integer id) {
         return bookService.getById(id);
     }
 
-    @DeleteMapping(value = "{id}")
+    @DeleteMapping(value = "/delete/{id}")
     public void deleteById(@PathVariable("id") Integer id) {
         bookService.deleteById(id);
     }

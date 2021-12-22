@@ -29,15 +29,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.GET, "/books/**").hasAnyAuthority("ADMIN", "USER", "MODERATOR")
-                .antMatchers(HttpMethod.POST, "/books/**").hasAnyAuthority("ADMIN")
-                .antMatchers(HttpMethod.DELETE, "/books/**").hasAnyAuthority("ADMIN")
-                .antMatchers(HttpMethod.PUT, "/books/**").hasAnyAuthority("ADMIN", "MODERATOR")
+                .antMatchers("/create/**").hasAnyAuthority("ADMIN")
+                .antMatchers(HttpMethod.DELETE, "/delete/**").hasAnyAuthority("ADMIN")
+                .antMatchers("/update/**").hasAnyAuthority("ADMIN", "MODERATOR")
                 .anyRequest().authenticated()
                 .and()
                 .formLogin().disable();
     }
-
-    //DTO - Data Transfer Object
 
     @Bean
     public AuthenticationProvider authProvider() {

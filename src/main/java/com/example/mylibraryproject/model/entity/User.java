@@ -19,12 +19,14 @@ public class User {
     @Id
     private String username;
     private String password;
+
     @Enumerated(EnumType.STRING)
     private Role role;
 
     @Column(name = "full_name")
     private String fullName;
     private Float balance;
+    
     @Column(name = "is_locked")
     private Boolean isLocked;
 }
